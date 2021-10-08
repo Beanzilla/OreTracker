@@ -15,5 +15,8 @@ read_globals = {
 
     -- MTG
     "default", "sfinv", "creative",
+
+    -- MCL
+    "mcl_sounds"
 }
 
