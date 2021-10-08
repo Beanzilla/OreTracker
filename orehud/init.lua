@@ -191,9 +191,16 @@ minetest.register_on_leaveplayer(function(player, timeout)
     end
 end)
 
+-- A priv for those to use this power
+minetest.register_privilege("orehud", {
+    description = "Oretracker Orehud Priv",
+    give_to_singleplayer = true -- Also given to those with server priv
+})
+
 minetest.register_chatcommand("orehud", {
     privs = {
         shout = true,
+        orehud = true -- Require our own priv
     },
     func = function(name, param)
         if orehud.p_stats[name] then

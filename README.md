@@ -7,26 +7,21 @@ Combines various tech to allow advanced mining operations.
 * Orehud: The original Oretracker mod with a single command to toggle the mod on or off per individual player.
 * Xray: Based on Orehud except trackes non-ores and makes them appear invisible.
 
-### Planned features for both mods
-
-* Require a priviledge for both mods to prevent every player from using all features. (Perhaps you allow your regulars only orehud but not xray)
-
 ## Orehud
 
 Displays ore positions via the player's HUD.
 
 > `/orehud` toggles the rendering of the ore positions on or off.
 
-## Xray (Comming Soon)
+## Xray
 
 Hides unwanted stone (and other varients) from view, only showing a empty node in it's wake.
 
 > `/xray` toggles the unwanted stone from visible to invisible (on or off).
 
-### To be done
+Yes, because xray interacts server side, all clients can make use of a single players client with xray. (This means you can see other players and ores they can see too by their xray)
 
-* Use the pre-existing orehud code in a seperate mod for tracking stone (including varients).
-* Make replacement nodes that are "invisible" with a general category feature (light grey for stone, dark red for netherrack, etc.)\*
-* When wished to be on, swap nodes in the detect range from their visible to invisble counterparts.
+## Common Issues
 
-\* I need to make invisible counterparts for all varients so you still get the original resource.
+* It was found that if the server crashes while a player is using xray, xray's nodes are kept. Created a special mode (fix_mode) to attempt to repair nodes which should return back to their original uppon detection. (If fix_mode is left on in production other players xrays can be overriden)
+* It is possible to get xray nodes to say simply by logging off, xray attempts to cleanup nodes by players who are attempting to log out. (Please make an issue report with any logs and screenshots/video showing this still occurs)
