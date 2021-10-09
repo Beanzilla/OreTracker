@@ -47,6 +47,8 @@ xray.add_pos = function(pname, pos)
         minetest.swap_node(pos, {name="xray:mcl_basalt"})
     elseif current == "mcl_nether:netherrack" then
         minetest.swap_node(pos, {name="xray:mcl_netherrack"})
+    elseif current == "mcl_deepslate:deepslate" then
+        minetest.swap_node(pos, {name="xray:mcl_deepslate"})
     end
     -- Stone, Diorite, Anasite, Granite, etc.
     xray.store[pname] = nps
@@ -92,6 +94,8 @@ xray.clear_pos = function(pname)
             minetest.swap_node(v, {name="mcl_blackstone:basalt"})
         elseif node == "xray:mcl_netherrack" then
             minetest.swap_node(v, {name="mcl_nether:netherrack"})
+        elseif node == "xray:mcl_deepslate" then
+            minetest.swap_node(v, {name="mcl_deepslate:deepslate"})
         end
     end
     xray.store[pname] = {}
@@ -132,5 +136,7 @@ xray.fix_pos = function (pos)
         minetest.swap_node(pos, {name="mcl_blackstone:basalt"})
     elseif node == "xray:mcl_netherrack" then
         minetest.swap_node(pos, {name="mcl_nether:netherrack"})
+    elseif node == "xray:mcl_deepslate" then
+        minetest.swap_node(pos, {name="mcl_deepslate:deepslate"})
     end
 end
