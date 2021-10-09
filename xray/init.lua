@@ -27,9 +27,8 @@ if not minetest.registered_nodes["default:stone"] then
     if not minetest.registered_nodes["mcl_core:stone"] then
         xray.gamemode = "N/A"
     else
-        xray.gamemode = "MCL"
         -- Attempt to determine if it's MCL5 or MCL2
-        if not minetest.registered_nodes["mcl_nether:ancient_debris"] then
+        if not minetest.registered_nodes["mcl_deepslate:deepslate"] then
             xray.gamemode = "MCL2"
         else
             xray.gamemode = "MCL5"
@@ -64,6 +63,8 @@ if xray.gamemode == "MCL5" then
     xray.add_node("mcl_blackstone:blackstone") -- xray:mcl_bstone
     xray.add_node("mcl_blackstone:basalt") -- xray:mcl_basalt
     xray.add_node("mcl_nether:netherrack") -- xray:mcl_netherrack
+    -- Deepslate now included
+    xray.add_node("mcl_deepslate:deepslate") -- xray:mcl_deepslate
 end
 
 if xray.gamemode == "MTG" then
@@ -75,6 +76,7 @@ if xray.gamemode == "MTG" then
 end
 
 -- Include our nodes so we can cleanup after ourselves
+-- Yeah there will be warnings in your logs about unknown nodes but who really checks that anyway.
 xray.add_node("xray:mtg_stone")
 xray.add_node("xray:mtg_dstone")
 xray.add_node("xray:mtg_sstone")
@@ -89,6 +91,7 @@ xray.add_node("xray:mcl_rsstone")
 xray.add_node("xray:mcl_bstone")
 xray.add_node("xray:mcl_basalt")
 xray.add_node("xray:mcl_netherrack")
+xray.add_node("xray:mcl_deepslate")
 
 local size = 0
 local result = "Nodes: "

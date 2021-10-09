@@ -24,7 +24,7 @@ if not minetest.registered_nodes["default:stone"] then
     else
         orehud.gamemode = "MCL"
         -- Attempt to determine if it's MCL5 or MCL2
-        if not minetest.registered_nodes["mcl_nether:ancient_debris"] then
+        if not minetest.registered_nodes["mcl_deepslate:deepslate"] then
             orehud.gamemode = "MCL2"
         else
             orehud.gamemode = "MCL5"
@@ -59,6 +59,14 @@ if orehud.gamemode == "MCL5" then
     orehud.add_ore("mcl_copper:stone_with_copper")
     orehud.add_ore("mcl_nether:ancient_debris")
     orehud.add_ore("mcl_nether_gold:nether_gold_ore")
+    -- Deepslate ores now included
+    orehud.add_ore("mcl_deepslate:deepslate_with_iron")
+    orehud.add_ore("mcl_deepslate:deepslate_with_coal")
+    orehud.add_ore("mcl_deepslate:deepslate_with_gold")
+    orehud.add_ore("mcl_deepslate:deepslate_with_emerald")
+    orehud.add_ore("mcl_deepslate:deepslate_with_diamond")
+    orehud.add_ore("mcl_deepslate:deepslate_with_lapis")
+    orehud.add_ore("mcl_deepslate:deepslate_with_redstone")
 end
 
 if orehud.gamemode == "MTG" then
