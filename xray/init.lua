@@ -20,7 +20,7 @@ xray.scan_frequency = 1 -- Frequency in seconds
 xray.light_level = 4 -- From 0-14
 
 -- Only turn this on if you have strange blobs of invisible blocks (due to a server crash, etc.)
-local fix_mode = false
+--local fix_mode = false
 
 -- This attempts to detect the gamemode
 if not minetest.registered_nodes["default:stone"] then
@@ -45,6 +45,7 @@ xray.nodes = {}
 
 -- Make our counterparts
 dofile(xray.modpath .. "/register.lua")
+dofile(xray.modpath .. "/abm.lua") -- The ABM passively will fix any nodes (and add a strange effect)
 
 -- Make our api
 dofile(xray.modpath .. "/api.lua")
@@ -123,10 +124,6 @@ xray.check_player = function(p)
                 if xray.p_stats[pname] then
                     -- Adds the counter since we are enabled
                     xray.add_pos(pname, area[i])
-                elseif string.find(node.name, "xray") and fix_mode then
-                    -- Attempt to cleanup that node if it's one of ours
-                    -- Warning don't leave fix_mode on all the time, can cause someone elses xray to be blocked because of ordering
-                    xray.fix_pos(area[i])
                 end
             end
         end

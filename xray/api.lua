@@ -55,6 +55,7 @@ xray.add_pos = function(pname, pos)
 end
 
 -- Clears all invisible nodes back to their originals (per player)
+-- Not really needed since the nodes themselves will reset automagically
 xray.clear_pos = function(pname)
     --local player = minetest.get_player_by_name(pname)
     local wps = xray.store[pname] or {}
@@ -102,6 +103,7 @@ xray.clear_pos = function(pname)
 end
 
 -- Attempt to repair the damage to this node (In the process of development I found my system made a ball of unrepairable goo, invisible blocks)
+-- Not really needed since the nodes themselves will reset automagically
 xray.fix_pos = function (pos)
     local node = minetest.get_node_or_nil(pos)
     if node == nil then
