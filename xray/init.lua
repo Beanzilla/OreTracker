@@ -153,7 +153,7 @@ minetest.register_globalstep(function(dtime)
 end)
 
 minetest.register_on_joinplayer(function(player, laston)
-    xray.p_stats[player:get_player_name()] = false
+    xray.p_stats[player:get_player_name()] = nil
 end)
 
 minetest.register_on_leaveplayer(function(player, timeout)
@@ -168,10 +168,17 @@ minetest.register_on_leaveplayer(function(player, timeout)
     end
     if found then
         -- Attempt to cleanup that player's invisible nodes before they log off
-        xray.p_stats[player:get_player_name()] = false
-        minetest.log("action", "Cleaning up "..player:get_player_name().." as they wish to leave.")
+        player:hud_remove(xray.p_stats[player:get_player_name()])
         xray.clear_pos(player:get_player_name())
+        xray.p_stats[player:get_player_name()] = nil
         table.remove(xray.p_stats, indx)
+    end
+end)
+
+-- Attempt to cleanup xrays in a singleplayer world
+minetest.register_on_shutdown(function ()
+    for _, player in ipairs(minetest.get_connected_players()) do
+        xray.clear_pos(player:get_player_name())
     end
 end)
 
@@ -188,11 +195,24 @@ minetest.register_chatcommand("xray", {
     },
     func = function(name, param)
         if xray.p_stats[name] then
-            xray.p_stats[name] = false
-            minetest.chat_send_player(name, "Xray: OFF")
+            local p = minetest.get_player_by_name(name)
+            if p ~= nil then
+                p:hud_remove(xray.p_stats[name])
+                xray.p_stats[name] = nil
+            end
         else
-            xray.p_stats[name] = true
-            minetest.chat_send_player(name, "Xray: ON")
+            local p = minetest.get_player_by_name(name)
+            if p ~= nil then
+                xray.p_stats[name] = p:hud_add({
+                    hud_elem_type = "text",
+                    position = {x = 0.9, y = 0.9},
+                    offset = {x = 0.0, y = 0.0},
+                    text = " XRAY ",
+                    number = 0x00e100, -- 0, 225, 0 (RGB)
+                    alignment = {x = 0.0, y = 0.0},
+                    scale = {x = 100.0, y = 100.0}
+                })
+            end
         end
     end,
 })

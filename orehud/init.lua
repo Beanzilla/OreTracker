@@ -171,7 +171,7 @@ minetest.register_globalstep(function(dtime)
             end
             -- I need to clean up the player's ore waypoints added by the latter code
             orehud.clear_pos(p:get_player_name())
-            if orehud.p_stats[p:get_player_name()] or false then
+            if orehud.p_stats[p:get_player_name()] then
                 -- Only run if that player wants to run
                 orehud.check_player(p)
             end
@@ -181,7 +181,7 @@ minetest.register_globalstep(function(dtime)
 end)
 
 minetest.register_on_joinplayer(function(player, laston)
-    orehud.p_stats[player:get_player_name()] = false
+    orehud.p_stats[player:get_player_name()] = nil
 end)
 
 minetest.register_on_leaveplayer(function(player, timeout)
@@ -195,6 +195,7 @@ minetest.register_on_leaveplayer(function(player, timeout)
         indx = indx + 1
     end
     if found then
+        player:hud_remove(orehud.p_stats(orehud.p_stats[player:get_player_name()]))
         table.remove(orehud.p_stats, indx)
     end
 end)
@@ -212,11 +213,24 @@ minetest.register_chatcommand("orehud", {
     },
     func = function(name, param)
         if orehud.p_stats[name] then
-            orehud.p_stats[name] = false
-            minetest.chat_send_player(name, "Orehud: OFF")
+            local p = minetest.get_player_by_name(name)
+            if p ~= nil then
+                p:hud_remove(orehud.p_stats[name])
+                orehud.p_stats[name] = nil
+            end
         else
-            orehud.p_stats[name] = true
-            minetest.chat_send_player(name, "Orehud: ON")
+            local p = minetest.get_player_by_name(name)
+            if p ~= nil then
+                orehud.p_stats[name] = p:hud_add({
+                    hud_elem_type = "text",
+                    position = {x = 0.9, y = 0.87},
+                    offset = {x = 0.0, y = 0.0},
+                    text = "OREHUD",
+                    number = 0x00e100, -- 0, 225, 0 (RGB)
+                    alignment = {x = 0.0, y = 0.0},
+                    scale = {x = 100.0, y = 100.0}
+                })
+            end
         end
     end,
 })

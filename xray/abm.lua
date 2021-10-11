@@ -4,7 +4,7 @@
 -- MTG
 minetest.register_abm({
     nodenames = {"xray:mtg_stone"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "default:stone"})
@@ -12,7 +12,7 @@ minetest.register_abm({
 })
 minetest.register_abm({
     nodenames = {"xray:mtg_dstone"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "default:desert_stone"})
@@ -20,7 +20,7 @@ minetest.register_abm({
 })
 minetest.register_abm({
     nodenames = {"xray:mtg_sstone"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "default:sandstone"})
@@ -28,7 +28,7 @@ minetest.register_abm({
 })
 minetest.register_abm({
     nodenames = {"xray:mtg_dsstone"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "default:desert_sandstone"})
@@ -36,7 +36,7 @@ minetest.register_abm({
 })
 minetest.register_abm({
     nodenames = {"xray:mtg_ssstone"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "default:silver_sandstone"})
@@ -54,7 +54,7 @@ minetest.register_abm({
 })
 minetest.register_abm({
     nodenames = {"xray:mcl_granite"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "mcl_core:granite"})
@@ -62,7 +62,7 @@ minetest.register_abm({
 })
 minetest.register_abm({
     nodenames = {"xray:mcl_andesite"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "mcl_core:andesite"})
@@ -70,7 +70,7 @@ minetest.register_abm({
 })
 minetest.register_abm({
     nodenames = {"xray:mcl_diorite"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "mcl_core:diorite"})
@@ -78,7 +78,7 @@ minetest.register_abm({
 })
 minetest.register_abm({
     nodenames = {"xray:mcl_sstone"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "mcl_core:sandstone"})
@@ -86,7 +86,7 @@ minetest.register_abm({
 })
 minetest.register_abm({
     nodenames = {"xray:mcl_rsstone"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "mcl_core:redsandstone"})
@@ -96,7 +96,7 @@ minetest.register_abm({
 -- MCL (5 only)
 minetest.register_abm({
     nodenames = {"xray:mcl_bstone"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "mcl_blackstone:blackstone"})
@@ -104,7 +104,7 @@ minetest.register_abm({
 })
 minetest.register_abm({
     nodenames = {"xray:mcl_basalt"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "mcl_blackstone:basalt"})
@@ -112,7 +112,7 @@ minetest.register_abm({
 })
 minetest.register_abm({
     nodenames = {"xray:mcl_netherrack"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "mcl_nether:netherrack"})
@@ -120,7 +120,7 @@ minetest.register_abm({
 })
 minetest.register_abm({
     nodenames = {"xray:mcl_deepslate"},
-    interval = 0, -- Run every X seconds
+    interval = 1, -- Run every X seconds
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "mcl_deepslate:deepslate"})
