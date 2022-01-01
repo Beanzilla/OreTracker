@@ -20,7 +20,11 @@ orehud.scan_frequency = 3 -- Frequency in seconds
 -- This attempts to detect the gamemode
 if not minetest.registered_nodes["default:stone"] then
     if not minetest.registered_nodes["mcl_core:stone"] then
-        orehud.gamemode = "N/A"
+        if minetest.registered_nodes["nc_terrain:stone"] then
+            orehud.gamemode = "NC"
+        else
+            orehud.gamemode = "N/A"
+        end
     else
         orehud.gamemode = "MCL"
         -- Attempt to determine if it's MCL5 or MCL2
@@ -77,6 +81,10 @@ if orehud.gamemode == "MTG" then
     orehud.add_ore("default:stone_with_tin")
     orehud.add_ore("default:stone_with_mese")
     orehud.add_ore("default:stone_with_diamond")
+end
+
+if orehud.gamemode == "NC" then
+    orehud.add_ore("nc_lode:ore")
 end
 
 local size = 0
@@ -146,6 +154,9 @@ orehud.check_player = function(player)
                 elseif string.find(node.name, "glowstone") then
                     block = "Glo"
                     color = 0xffff4b
+                elseif string.find(node.name, "lode") then -- nc_lode:ore
+                    block = "Lode"
+                    color = 0xaf644b
                 end
                 if block == "?" then
                     minetest.log("action", "[oretracker-orehud] Found '"..node.name.."' at "..minetest.pos_to_string(area[i], 1).." which is "..distance.." away from '"..pname..".")

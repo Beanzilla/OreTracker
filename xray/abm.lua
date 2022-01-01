@@ -1,5 +1,5 @@
 -- https://rubenwardy.com/minetest_modding_book/en/map/timers.html#active-block-modifiers
--- An ABM seems slow, so this is a great feature for cleaning up those crashs
+-- An ABM seems slow, but this is a great feature for cleaning up those crashs
 
 -- MTG
 minetest.register_abm({
@@ -124,5 +124,15 @@ minetest.register_abm({
     action = function(pos, node, active_object_count,
             active_object_count_wider)
         minetest.set_node(pos, {name = "mcl_deepslate:deepslate"})
+    end
+})
+
+-- NC
+minetest.register_abm({
+    nodenames = {"xray:nc_stone"},
+    interval = 1, -- Run every X seconds
+    action = function(pos, node, active_object_count,
+            active_object_count_wider)
+        minetest.set_node(pos, {name = "nc_terrain:stone"})
     end
 })

@@ -234,3 +234,17 @@ if xray.gamemode == "MCL5" then
         _mcl_silk_touch_drop = false,
     })
 end
+
+if xray.gamemode == "NC" then
+    minetest.register_node("xray:nc_stone", {
+        description = xray.S("Xray Stone"),
+        tiles = {"xray_stone.png"},
+        groups = {cracky = 2, stone = 1, rock = 1},
+        drop = "nc_terrain:stone",
+        drawtype = "glasslike",
+        sunlight_propagates = true,
+        legacy_mineral = true,
+        light_source = xray.light_level,
+        sounds = nodecore.sounds("nc_terrain_stony")
+    })
+end

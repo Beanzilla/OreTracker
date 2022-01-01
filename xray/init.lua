@@ -25,7 +25,11 @@ xray.light_level = 4 -- From 0-14
 -- This attempts to detect the gamemode
 if not minetest.registered_nodes["default:stone"] then
     if not minetest.registered_nodes["mcl_core:stone"] then
-        xray.gamemode = "N/A"
+        if not minetest.registered_nodes["nc_terrain:stone"] then
+            xray.gamemode = "N/A"
+        else
+            xray.gamemode = "NC"
+        end
     else
         -- Attempt to determine if it's MCL5 or MCL2
         if not minetest.registered_nodes["mcl_deepslate:deepslate"] then
@@ -76,23 +80,31 @@ if xray.gamemode == "MTG" then
     xray.add_node("default:silver_sandstone") -- xray:mtg_ssstone
 end
 
+if xray.gamemode == "NC" then
+    xray.add_node("nc_terrain:stone") -- xray:nc_stone
+end
+
 -- Include our nodes so we can cleanup after ourselves
--- Yeah there will be warnings in your logs about unknown nodes but who really checks that anyway.
-xray.add_node("xray:mtg_stone")
-xray.add_node("xray:mtg_dstone")
-xray.add_node("xray:mtg_sstone")
-xray.add_node("xray:mtg_dsstone")
-xray.add_node("xray:mtg_ssstone")
-xray.add_node("xray:mcl_stone")
-xray.add_node("xray:mcl_granite")
-xray.add_node("xray:mcl_andesite")
-xray.add_node("xray:mcl_diorite")
-xray.add_node("xray:mcl_sstone")
-xray.add_node("xray:mcl_rsstone")
-xray.add_node("xray:mcl_bstone")
-xray.add_node("xray:mcl_basalt")
-xray.add_node("xray:mcl_netherrack")
-xray.add_node("xray:mcl_deepslate")
+if xray.gamemode == "MTG" then
+    xray.add_node("xray:mtg_stone")
+    xray.add_node("xray:mtg_dstone")
+    xray.add_node("xray:mtg_sstone")
+    xray.add_node("xray:mtg_dsstone")
+    xray.add_node("xray:mtg_ssstone")
+elseif xray.gamemode == "MCL2" or xray.gamemode == "MCL5" then
+    xray.add_node("xray:mcl_stone")
+    xray.add_node("xray:mcl_granite")
+    xray.add_node("xray:mcl_andesite")
+    xray.add_node("xray:mcl_diorite")
+    xray.add_node("xray:mcl_sstone")
+    xray.add_node("xray:mcl_rsstone")
+    xray.add_node("xray:mcl_bstone")
+    xray.add_node("xray:mcl_basalt")
+    xray.add_node("xray:mcl_netherrack")
+    xray.add_node("xray:mcl_deepslate")
+elseif xray.gamemode == "NC" then
+    xray.add_node("xray:nc_stone")
+end
 
 local size = 0
 local result = "Nodes: "
@@ -120,9 +132,10 @@ xray.check_player = function(p)
             if distance <= xray.detect_range*xray.detect_range then
                 --distance = string.format("%.0f", math.sqrt(distance))
                 -- Place the counterpart
-                --minetest.log("action", "xray "..pname.." "..minetest.pos_to_string(area[1], 1))
-                if xray.p_stats[pname] then
+                --minetest.log("action", "xray "..pname.." "..minetest.pos_to_string(area[i], 1).." "..node.name)
+                if xray.p_stats[pname] ~= nil then
                     -- Adds the counter since we are enabled
+                    --minetest.log("action", "xray "..pname.." "..minetest.pos_to_string(area[i], 1).." "..node.name)
                     xray.add_pos(pname, area[i])
                 end
             end
