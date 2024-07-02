@@ -7,6 +7,10 @@ Combines various tech to allow advanced mining operations.
 * Orehud: The original Oretracker mod with a single command to toggle the mod on or off per individual player.
 * Xray: Based on Orehud except tracks non-ores and makes them appear invisible.
 
+## What's New (July 1st 2024)
+
+* Iterate ores and generate names and detection via that (No more hard coding for itemstring to Name, but no more colors based on ore)
+
 ## Orehud
 
 Displays ore positions via the player's HUD.
@@ -30,4 +34,3 @@ Yes, because xray interacts server side, all clients can make use of a single pl
 
 * Improve Xray and Orehud so the api can litterally add new nodes (so I don't need to release updates for others to add support for their mods/games)
 * Possibly add a formspec for Xray so you could customize your xray, per player (i.e. know a node you don't want to see, just add it via the formspec)
-

@@ -45,6 +45,7 @@ orehud.ores = {}
 
 dofile(orehud.modpath .. "/api.lua")
 
+--[[
 -- Use api to assign ores we know/should be caring about
 if orehud.gamemode == "MCL2" or orehud.gamemode == "MCL5" then
     orehud.add_ore("mcl_core:stone_with_coal")
@@ -86,6 +87,13 @@ end
 if orehud.gamemode == "NC" then
     orehud.add_ore("nc_lode:ore")
 end
+]]
+
+orehud.add_ores = function ()
+    for _, item in ipairs(minetest.registered_ores) do
+        orehud.add_ore(item)
+    end
+end
 
 local size = 0
 local result = "Ores: "
@@ -118,6 +126,7 @@ orehud.check_player = function(player)
                 distance = string.format("%.0f", math.sqrt(distance))
                 local block = "?"
                 local color = 0xffffff
+
                 if string.find(node.name, "coal") then
                     block = "Coa"
                     color = 0xc8c8c8
