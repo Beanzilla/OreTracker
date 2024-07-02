@@ -95,14 +95,17 @@ orehud.add_ores = function ()
     end
 end
 
-local size = 0
-local result = "Ores: "
-for i, v in ipairs(orehud.ores) do
-    result = result..v.." "
-    size = size + 1
-end
-minetest.log("action", "[oretracker-orehud] Found "..size.." ores configured.")
-minetest.log("action", "[oretracker-orehud] "..result)
+minetest.register_on_mods_loaded(function()
+    orehud.add_ores()
+    local size = 0
+    local result = "Ores: "
+    for i, v in ipairs(orehud.ores) do
+        result = result..v.." "
+        size = size + 1
+    end
+    minetest.log("action", "[oretracker-orehud] Found "..size.." ores configured.")
+    minetest.log("action", "[oretracker-orehud] "..result)
+end)
 
 -- Itterates an area of nodes for "ores", then adds a waypoint at that nodes position for that "ore".
 orehud.check_player = function(player)
@@ -126,8 +129,9 @@ orehud.check_player = function(player)
                 distance = string.format("%.0f", math.sqrt(distance))
                 local block = "?"
                 local color = 0xffffff
-
-                if string.find(node.name, "coal") then
+		local def = minetest.registered_nodes[node.name] or nil
+		color = 0xc8c84b
+                --[[if string.find(node.name, "coal") then
                     block = "Coa"
                     color = 0xc8c8c8
                 elseif string.find(node.name, "iron") then
@@ -166,6 +170,10 @@ orehud.check_player = function(player)
                 elseif string.find(node.name, "lode") then -- nc_lode:ore
                     block = "Lode"
                     color = 0xaf644b
+                end
+		]]
+                if def ~= nil then
+                    block = def.short_description or def.description
                 end
                 if block == "?" then
                     minetest.log("action", "[oretracker-orehud] Found '"..node.name.."' at "..minetest.pos_to_string(area[i], 1).." which is "..distance.." away from '"..pname..".")
